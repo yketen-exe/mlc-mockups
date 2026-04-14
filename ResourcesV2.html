@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resources — Michigan Lean Consortium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════════════
+   MLC RESOURCES V2
+   Design system: DM Serif Display + DM Sans, production colors
+═══════════════════════════════════════════════════════ */
+
+:root {
+  --black: #111010;
+  --navy: #00274C;
+  --navy-mid: #1B5EA6;
+  --orange: #CC6600;
+  --orange-lt: #E07A10;
+  --orange-pale: #FDF0E3;
+  --maize: #FFCB05;
+  --ink: #2c2e30;
+  --warm-white: #F8F7F4;
+  --stone: #E8E8E8;
+  --stone-mid: #D4CFC8;
+  --gray: #888888;
+  --white: #FFFFFF;
+
+  --display: 'DM Serif Display', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+
+  --max: 1200px;
+  --gutter: clamp(1.25rem, 5vw, 3rem);
+  --ease: cubic-bezier(.4,0,.2,1);
+  --ease-spring: cubic-bezier(.175,.885,.32,1.275);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+a { text-decoration: none; color: inherit; }
+img { display: block; max-width: 100%; }
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+
+/* ── SECTION UTILITIES ────────────────────────────── */
+.section-label {
+  font-family: var(--sans);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  margin-bottom: .75rem;
+}
+.section-title {
+  font-family: var(--display);
+  font-weight: 400;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+.section-title em { font-style: italic; }
+
+/* ── ANNOUNCEMENT BAR ─────────────────────────────── */
+.ann-bar {
+  background: var(--navy);
+  padding: 9px var(--gutter);
+}
+.ann-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: var(--sans);
+  font-size: .78rem;
+  color: rgba(255,255,255,.7);
+}
+.ann-dot {
+  width: 6px; height: 6px;
+  background: var(--maize);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.ann-pill {
+  background: rgba(255,255,255,.12);
+  color: var(--maize);
+  font-weight: 600;
+  font-size: .72rem;
+  padding: 4px 14px;
+  border-radius: 100px;
+  white-space: nowrap;
+  transition: background .2s var(--ease);
+}
+.ann-pill:hover { background: rgba(255,255,255,.2); }
+
+/* ── NAVIGATION ───────────────────────────────────── */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: var(--black);
+  padding: 0 var(--gutter);
+}
+.nav-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+.nav-logo img { height: 44px; width: auto; }
+.nav-links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 0;
+  height: 100%;
+}
+.nav-links > li {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.nav-links > li > a {
+  font-family: var(--sans);
+  font-size: .85rem;
+  font-weight: 500;
+  color: rgba(255,255,255,.65);
+  padding: 0 16px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  transition: color .2s var(--ease);
+}
+.nav-links > li > a:hover { color: var(--white); }
+.nav-links > li > a.active { color: var(--orange); font-weight: 600; }
+.nav-chevron {
+  font-size: .6rem;
+  opacity: .5;
+  transition: transform .2s var(--ease);
+}
+.nav-links > li:hover .nav-chevron { transform: rotate(180deg); }
+.nav-dd {
+  position: absolute;
+  top: calc(100% - 2px);
+  left: 0;
+  background: var(--white);
+  border: 1px solid var(--stone);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.15);
+  min-width: 200px;
+  list-style: none;
+  padding: 6px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: all .2s var(--ease);
+}
+.nav-links > li:hover .nav-dd {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.nav-dd a {
+  display: block;
+  padding: 10px 14px;
+  font-size: .82rem;
+  font-weight: 500;
+  color: var(--ink);
+  border-radius: 8px;
+  transition: background .15s var(--ease);
+}
+.nav-dd a:hover { background: var(--warm-white); color: var(--orange); }
+.nav-right { display: flex; align-items: center; gap: 16px; }
+.nav-login {
+  font-size: .82rem;
+  font-weight: 500;
+  color: rgba(255,255,255,.5);
+  transition: color .2s var(--ease);
+}
+.nav-login:hover { color: var(--white); }
+.btn-donate {
+  background: var(--orange);
+  color: var(--white);
+  font-size: .82rem;
+  font-weight: 700;
+  padding: 8px 22px;
+  border-radius: 100px;
+  transition: background .2s var(--ease);
+}
+.btn-donate:hover { background: var(--orange-lt); }
+
+/* ── BUTTONS ──────────────────────────────────────── */
+.btn-primary {
+  display: inline-block;
+  background: var(--orange);
+  color: var(--white);
+  font-family: var(--sans);
+  font-size: .88rem;
+  font-weight: 700;
+  padding: 14px 32px;
+  border-radius: 100px;
+  transition: background .2s var(--ease);
+}
+.btn-primary:hover { background: var(--orange-lt); }
+.btn-ghost {
+  display: inline-block;
+  border: 1.5px solid rgba(255,255,255,.3);
+  color: var(--white);
+  font-family: var(--sans);
+  font-size: .88rem;
+  font-weight: 600;
+  padding: 14px 32px;
+  border-radius: 100px;
+  transition: border-color .2s var(--ease), color .2s var(--ease);
+}
+.btn-ghost:hover { border-color: rgba(255,255,255,.6); }
+.link-arrow {
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--orange);
+}
+
+/* ── HERO ─────────────────────────────────────────── */
+.hero {
+  background: var(--black);
+  color: var(--white);
+  padding: clamp(4rem, 10vw, 8rem) var(--gutter) clamp(4rem, 8vw, 6rem);
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  right: -5%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 500px;
+  height: 600px;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M100 0C70 0 45 10 30 30C15 50 10 80 20 110C30 140 50 165 75 185C90 198 100 210 100 240C100 210 110 198 125 185C150 165 170 140 180 110C190 80 185 50 170 30C155 10 130 0 100 0Z' fill='rgba(255,203,5,0.04)'/%3E%3C/svg%3E") no-repeat center/contain;
+  pointer-events: none;
+}
+.hero-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.hero-eyebrow {
+  font-family: var(--sans);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 1.5rem;
+}
+.hero h1 {
+  font-family: var(--display);
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1.08;
+  margin-bottom: 1.5rem;
+  max-width: 700px;
+}
+.hero h1 em { font-style: italic; color: var(--orange); }
+.hero-desc {
+  font-size: clamp(.95rem, 1.2vw, 1.15rem);
+  color: rgba(255,255,255,.6);
+  max-width: 540px;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+
+/* ── FEATURED SPOTLIGHT ───────────────────────────── */
+.spotlight {
+  background: var(--white);
+  padding: clamp(4rem, 7vw, 6rem) var(--gutter);
+}
+.spotlight-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: center;
+}
+.spotlight .section-label { color: var(--orange); }
+.spotlight .section-title {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: var(--navy);
+}
+.spotlight .section-title em { color: var(--orange); }
+.spotlight-text p {
+  font-size: .92rem;
+  color: var(--gray);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+.spotlight-quote {
+  font-family: var(--display);
+  font-size: 1.05rem;
+  color: var(--navy);
+  font-style: italic;
+  line-height: 1.5;
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--orange);
+  margin-bottom: 1rem;
+}
+.spotlight-attr {
+  font-size: .82rem;
+  color: var(--gray);
+  padding-left: 1.25rem;
+}
+.spotlight-attr strong { color: var(--orange); }
+.spotlight-img {
+  border-radius: 20px;
+  overflow: hidden;
+}
+.spotlight-img img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+.spotlight-link {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--orange);
+}
+
+/* ── RECENT BLOG ──────────────────────────────────── */
+.blog {
+  background: var(--warm-white);
+  padding: clamp(4rem, 7vw, 6rem) var(--gutter);
+}
+.blog-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.blog-hd {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+}
+.blog .section-label { color: var(--orange); }
+.blog .section-title {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  color: var(--navy);
+}
+.blog-link {
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--orange);
+  white-space: nowrap;
+}
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.blog-card {
+  background: var(--white);
+  border: 1px solid var(--stone);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+.blog-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 48px rgba(0,39,76,.09);
+}
+.blog-card-img {
+  height: 180px;
+  background: var(--stone);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.blog-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.blog-card-body {
+  padding: 20px;
+}
+.blog-cat {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: .5rem;
+}
+.blog-card-title {
+  font-family: var(--display);
+  font-size: 1rem;
+  color: var(--navy);
+  line-height: 1.3;
+  margin-bottom: .75rem;
+}
+.blog-date {
+  font-size: .78rem;
+  color: var(--gray);
+}
+
+/* ── SLIDE ARCHIVES ───────────────────────────────── */
+.archives {
+  background: var(--white);
+  padding: clamp(4rem, 7vw, 6rem) var(--gutter);
+}
+.archives-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.archives .section-label { color: var(--orange); }
+.archives .section-title {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  color: var(--navy);
+  margin-bottom: .75rem;
+}
+.archives .section-title em { color: var(--orange); }
+.archives-desc {
+  color: var(--gray);
+  font-size: .92rem;
+  max-width: 520px;
+  margin-bottom: 2.5rem;
+}
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.archive-card {
+  background: var(--white);
+  border: 1px solid var(--stone);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+.archive-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 48px rgba(0,39,76,.09);
+}
+.archive-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--orange-pale);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.archive-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--orange);
+}
+.archive-card h3 {
+  font-family: var(--display);
+  font-size: 1rem;
+  color: var(--navy);
+  line-height: 1.3;
+  margin-bottom: .35rem;
+}
+.archive-date {
+  font-size: .78rem;
+  color: var(--gray);
+  margin-bottom: .75rem;
+}
+.archive-card .link-arrow {
+  font-size: .82rem;
+}
+
+/* ── CTA BANNER ───────────────────────────────────── */
+.cta-banner {
+  background: var(--navy);
+  padding: clamp(3.5rem, 6vw, 5rem) var(--gutter);
+  text-align: center;
+}
+.cta-banner-inner {
+  max-width: 600px;
+  margin: 0 auto;
+}
+.cta-banner .section-label { color: var(--maize); }
+.cta-banner .section-title {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  color: var(--white);
+  margin-bottom: .75rem;
+}
+.cta-banner .section-title em { color: var(--maize); }
+.cta-banner-desc {
+  font-size: .95rem;
+  color: rgba(255,255,255,.55);
+  margin-bottom: 2rem;
+}
+.cta-banner-btns {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ── FOOTER ───────────────────────────────────────── */
+.site-footer {
+  background: var(--black);
+  color: rgba(255,255,255,.5);
+  padding: clamp(3rem, 5vw, 4rem) var(--gutter) 2rem;
+}
+.footer-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 3rem;
+}
+.footer-brand p {
+  font-size: .85rem;
+  line-height: 1.7;
+  margin-top: .75rem;
+}
+.footer-social {
+  display: flex;
+  gap: 12px;
+  margin-top: 1rem;
+}
+.footer-social a {
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,.4);
+  font-size: .75rem;
+  transition: border-color .2s var(--ease), color .2s var(--ease);
+}
+.footer-social a:hover { border-color: rgba(255,255,255,.3); color: var(--white); }
+.footer-col h4 {
+  font-family: var(--sans);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.3);
+  margin-bottom: 1rem;
+}
+.footer-col a {
+  display: block;
+  font-size: .85rem;
+  color: rgba(255,255,255,.5);
+  padding: 4px 0;
+  transition: color .2s var(--ease);
+}
+.footer-col a:hover { color: var(--white); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.08);
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: .78rem;
+}
+.footer-bottom a { color: rgba(255,255,255,.4); }
+.footer-bottom a:hover { color: var(--white); }
+
+/* ── RESPONSIVE ───────────────────────────────────── */
+@media (max-width: 960px) {
+  .spotlight-inner { grid-template-columns: 1fr; }
+  .spotlight-img { order: -1; }
+  .blog-grid { grid-template-columns: repeat(2, 1fr); }
+  .archive-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .blog-grid, .archive-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .blog-hd { flex-direction: column; align-items: flex-start; gap: .75rem; }
+  .footer-bottom { flex-direction: column; gap: .5rem; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="ann-bar">
+  <div class="ann-inner">
+    <div class="ann-dot"></div>
+    <span>Registration is now open for the 2026 MLC Annual Conference</span>
+    <a href="#" class="ann-pill">Register now &rarr;</a>
+  </div>
+</div>
+
+<!-- NAVIGATION -->
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="/Brand Assets/Logo.png" alt="Michigan Lean Consortium" style="height:44px;width:auto;">
+    </a>
+    <ul class="nav-links">
+      <li><a href="/about">About</a></li>
+      <li>
+        <a href="/events">Events <span class="nav-chevron">&#9662;</span></a>
+        <ul class="nav-dd">
+          <li><a href="/events">Upcoming Events</a></li>
+          <li><a href="/events/annual-conference">Annual Conference</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/get-involved">Get Involved <span class="nav-chevron">&#9662;</span></a>
+        <ul class="nav-dd">
+          <li><a href="/get-involved/membership">Become a Member</a></li>
+          <li><a href="/get-involved/partnerships">Sponsorship</a></li>
+          <li><a href="/get-involved/volunteer">Volunteer</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/resources" class="active">Resources <span class="nav-chevron">&#9662;</span></a>
+        <ul class="nav-dd">
+          <li><a href="/resources/blog">Blog</a></li>
+          <li><a href="/resources/spotlights">Member Spotlights</a></li>
+          <li><a href="/resources/slides">Event Slide Archives</a></li>
+        </ul>
+      </li>
+    </ul>
+    <div class="nav-right">
+      <a href="/login" class="nav-login">Log In</a>
+      <a href="/donate" class="btn-donate">Donate</a>
+    </div>
+  </div>
+</nav>
+
+
+<!-- 1. HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Community &amp; Resources</div>
+    <h1>Stories from Michigan's <em>Lean community.</em></h1>
+    <p class="hero-desc">
+      Member spotlights, blog posts, and presentation archives from the MLC community. Real stories of continuous improvement in action.
+    </p>
+  </div>
+</section>
+
+
+<!-- 2. FEATURED SPOTLIGHT -->
+<section class="spotlight">
+  <div class="spotlight-inner">
+    <div class="spotlight-text">
+      <div class="section-label">Member Spotlight</div>
+      <h2 class="section-title">Featured <em>story</em></h2>
+      <p>
+        Every month we highlight an MLC member or organization making a difference through Lean thinking. These are the stories that show why continuous improvement matters.
+      </p>
+      <div class="spotlight-quote">
+        &#8220;Joining the MLC connected us to a community that understood our challenges. The Gemba tours alone changed how our leadership team thinks about waste.&#8221;
+      </div>
+      <div class="spotlight-attr">
+        &mdash; VP of Operations, <strong>Gentex Corporation</strong>
+      </div>
+      <a href="/resources/spotlights" class="spotlight-link">Read all spotlights &rarr;</a>
+    </div>
+    <div class="spotlight-img">
+      <img src="https://placehold.co/600x450/00274C/FFCB05?text=Member+Spotlight" alt="MLC member spotlight">
+    </div>
+  </div>
+</section>
+
+
+<!-- 3. RECENT BLOG -->
+<section class="blog">
+  <div class="blog-inner">
+    <div class="blog-hd">
+      <div>
+        <div class="section-label">From the MLC</div>
+        <h2 class="section-title">Recent Blog Posts</h2>
+      </div>
+      <a href="/resources/blog" class="blog-link">All posts &rarr;</a>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card">
+        <div class="blog-card-img">
+          <img src="https://placehold.co/400x200/00274C/FFCB05?text=Member+Spotlight" alt="Blog post image">
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-cat">Events Recap</div>
+          <div class="blog-card-title">Where Strategy Meets Honesty: Recapping the 8th Annual Grand Rapids Lean Summit</div>
+          <div class="blog-date">March 20, 2026</div>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-card-img">
+          <img src="https://placehold.co/400x200/CC6600/FFFFFF?text=Updates" alt="Blog post image">
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-cat">Member Spotlight</div>
+          <div class="blog-card-title">Hidden in Plain Sight: How Fibre Converters Brings Lean to Life</div>
+          <div class="blog-date">March 20, 2026</div>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-card-img">
+          <img src="https://placehold.co/400x200/F8F7F4/888888?text=Events+Recap" alt="Blog post image">
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-cat">Member Spotlight</div>
+          <div class="blog-card-title">Retirement Spotlight: Jim Willems, State of Michigan</div>
+          <div class="blog-date">February 20, 2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 4. SLIDE ARCHIVES -->
+<section class="archives">
+  <div class="archives-inner">
+    <div class="section-label">Presentation Archives</div>
+    <h2 class="section-title">Event <em>slide decks</em></h2>
+    <p class="archives-desc">
+      Members can access presentation slides from past MLC events. Log in to download.
+    </p>
+    <div class="archive-grid">
+      <div class="archive-card">
+        <div class="archive-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <h3>2025 MLC Annual Conference</h3>
+        <div class="archive-date">September 2025</div>
+        <a href="#" class="link-arrow">Download slides &rarr;</a>
+      </div>
+      <div class="archive-card">
+        <div class="archive-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <h3>7th Annual Grand Rapids Lean Summit</h3>
+        <div class="archive-date">March 2025</div>
+        <a href="#" class="link-arrow">Download slides &rarr;</a>
+      </div>
+      <div class="archive-card">
+        <div class="archive-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <h3>2025 Lean Excellence Student Competition</h3>
+        <div class="archive-date">October 2025</div>
+        <a href="#" class="link-arrow">Download slides &rarr;</a>
+      </div>
+      <div class="archive-card">
+        <div class="archive-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <h3>8th Annual Grand Rapids Lean Summit</h3>
+        <div class="archive-date">March 2026</div>
+        <a href="#" class="link-arrow">Download slides &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 5. CTA BANNER -->
+<section class="cta-banner">
+  <div class="cta-banner-inner">
+    <div class="section-label">Join the Community</div>
+    <h2 class="section-title">Become part of Michigan's <em>Lean network</em></h2>
+    <p class="cta-banner-desc">
+      Members get access to all presentation archives, spotlights, and exclusive content. Join 620+ practitioners statewide.
+    </p>
+    <div class="cta-banner-btns">
+      <a href="/get-involved/membership" class="btn-primary">Become a Member &rarr;</a>
+      <a href="/get-involved/membership" class="btn-ghost">View Membership Options</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="/Brand Assets/Logo.png" alt="Michigan Lean Consortium" style="height:40px;width:auto;filter:brightness(0) invert(1);opacity:.7;">
+        <p>Transforming Michigan's organizations and economy by developing and supporting Lean Systems thinkers since 2008. 501(c)(3) nonprofit.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="#" aria-label="Twitter"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Events</h4>
+        <a href="#">All Events</a>
+        <a href="#">Annual Conference</a>
+        <a href="#">Grand Rapids Summit</a>
+        <a href="#">Lean Virtual Coffee</a>
+        <a href="#">Gemba Tours</a>
+      </div>
+      <div class="footer-col">
+        <h4>Get Involved</h4>
+        <a href="#">Membership</a>
+        <a href="#">Partnerships</a>
+        <a href="#">Volunteer</a>
+        <a href="#">Internships</a>
+        <a href="#">Donate</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resources &amp; About</h4>
+        <a href="#">Blog</a>
+        <a href="#">Member Spotlights</a>
+        <a href="#">Event Slide Archives</a>
+        <a href="#">About MLC</a>
+        <a href="#">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Michigan Lean Consortium &mdash; All rights reserved.</span>
+      <a href="mailto:info@michiganlean.org">info@michiganlean.org</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
